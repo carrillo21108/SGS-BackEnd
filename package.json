@@ -1,0 +1,19 @@
+{
+  "name": "sgs-backend",
+  "version": "1.0.0",
+  "description": "Back-End Proyecto 2 Base de datos 1",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/carrillo21108/SGS-BackEnd.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/carrillo21108/SGS-BackEnd/issues"
+  },
+  "homepage": "https://github.com/carrillo21108/SGS-BackEnd#readme"
+}
