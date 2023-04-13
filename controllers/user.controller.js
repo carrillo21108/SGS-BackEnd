@@ -31,13 +31,9 @@ function createPaciente(req,res){
 
 function createMedico(req,res){
     var params = req.body;
-    client.query("INSERT INTO Persona ")
+    client.query("CALL createMedico($1,$2,$3,$4,$5,$6,$7,$8,$9,$10)",[params.cui,params.nombre,params.apellidos,params.direccion,params.telefono,params.id_centro_medico,params.no_colegiado,parseInt(params.id_especialidad),params.usuario,params.clave])
     .then(response => {
-        if(response.rows.length==0){
-            res.send({message:"Contraseña y/o usuario incorrecto."});
-        }else{
-            res.send(response.rows);
-        }
+        res.send({message:"Medico creado con exito."});
     })
     .catch(err => {
         console.log(err);
