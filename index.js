@@ -22,16 +22,6 @@ app.use((req, res, next) => {
 app.listen(port);
 console.log('Server Started on Port 3000');
 
-
-var client = require('./connection');
-client.connect()
-client.query('SELECT * FROM usuarios')
-    .then(response => {
-        console.log(response.rows)
-        client.end()
-    })
-    .catch(err => {
-        client.end()
-    })
+app.use(userRoutes);
 
 module.exports = app;
