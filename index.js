@@ -7,6 +7,7 @@ var app = express();
 
 var port = 3000;
 var userRoutes = require('./routes/user.route');
+var medicalCenterRoutes = require('./routes/medicalCenter.route');
 
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
@@ -23,5 +24,6 @@ app.listen(port);
 console.log('Server Started on Port 3000');
 
 app.use(userRoutes);
+app.use(medicalCenterRoutes);
 
 module.exports = app;

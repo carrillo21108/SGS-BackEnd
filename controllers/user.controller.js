@@ -1,5 +1,4 @@
 var client = require('../connection');
-client.connect()
 
 function login(req,res){
     var params = req.body;
@@ -20,13 +19,9 @@ function login(req,res){
 
 function createPaciente(req,res){
     var params = req.body;
-    client.query("INSERT INTO Persona VALUES ()")
+    client.query("CALL createPaciente($1,$2,$3,$4,$5,$6)",[params.cui,params.nombre,params.apellidos,params.direccion,params.telefono,params.id_centro_medico])
     .then(response => {
-        if(response.rows.length==0){
-            res.send({message:"Contraseña y/o usuario incorrecto."});
-        }else{
-            res.send(response.rows);
-        }
+        res.send({message:"Paciente creado con exito."});
     })
     .catch(err => {
         console.log(err);
