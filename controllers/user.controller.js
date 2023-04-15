@@ -17,9 +17,9 @@ function login(req,res){
     })
 }
 
-function createPaciente(req,res){
+function createPatient(req,res){
     var params = req.body;
-    client.query("CALL createPaciente($1,$2,$3,$4,$5,$6)",[params.cui,params.nombre,params.apellidos,params.direccion,params.telefono,params.id_centro_medico])
+    client.query("CALL createPaciente($1,$2,$3,$4,$5,$6,$7)",[params.cui,params.nombre,params.apellidos,params.direccion,params.telefono,params.id_centro_medico,parseInt(params.id_estado)])
     .then(response => {
         res.send({message:"Paciente creado con exito."});
     })
@@ -29,7 +29,7 @@ function createPaciente(req,res){
     })
 }
 
-function createMedico(req,res){
+function createDoctor(req,res){
     var params = req.body;
     client.query("CALL createMedico($1,$2,$3,$4,$5,$6,$7,$8,$9,$10)",[params.cui,params.nombre,params.apellidos,params.direccion,params.telefono,params.id_centro_medico,params.no_colegiado,parseInt(params.id_especialidad),params.usuario,params.clave])
     .then(response => {
@@ -41,8 +41,21 @@ function createMedico(req,res){
     })
 }
 
+function createState(req,res){
+    var params = req.body;
+    client.query("INSERT INTO Estado (descripcion) VALUES ($1)",[params.descripcion])
+    .then(response => {
+        res.send({message:"Estado creado con exito."});
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(500).send({message:'Error general'});
+    })
+}
+
 module.exports = {
     login,
-    createPaciente,
-    createMedico
+    createPatient,
+    createDoctor,
+    createState
 }
