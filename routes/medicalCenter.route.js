@@ -5,5 +5,6 @@ var api = express.Router();
 
 api.post('/createCentroMedico',medicalCenter.create);
 api.post('/insertMedicamento',medicalCenter.insertMedicine);
+api.post('/insertMaterial',medicalCenter.insertMaterial);
 
 module.exports = api;

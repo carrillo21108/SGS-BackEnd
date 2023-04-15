@@ -10,6 +10,8 @@ var userRoutes = require('./routes/user.route');
 var medicalCenterRoutes = require('./routes/medicalCenter.route');
 var specialtyRoutes = require('./routes/specialty.route');
 var medicineRoutes = require('./routes/medicine.route');
+var materialRoutes = require('./routes/material.route');
+var directionRoutes = require('./routes/direction.route');
 
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
@@ -29,5 +31,7 @@ app.use(userRoutes);
 app.use(medicalCenterRoutes);
 app.use(specialtyRoutes);
 app.use(medicineRoutes);
+app.use(materialRoutes);
+app.use(directionRoutes);
 
 module.exports = app;
