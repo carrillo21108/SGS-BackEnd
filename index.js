@@ -9,6 +9,7 @@ var port = 3000;
 var userRoutes = require('./routes/user.route');
 var medicalCenterRoutes = require('./routes/medicalCenter.route');
 var specialtyRoutes = require('./routes/specialty.route');
+var medicineRoutes = require('./routes/medicine.route');
 
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
@@ -27,5 +28,6 @@ console.log('Server Started on Port 3000');
 app.use(userRoutes);
 app.use(medicalCenterRoutes);
 app.use(specialtyRoutes);
+app.use(medicineRoutes);
 
 module.exports = app;

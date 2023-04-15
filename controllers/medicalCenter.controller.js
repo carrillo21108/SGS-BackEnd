@@ -12,6 +12,19 @@ function create(req,res){
     })
 }
 
+function insertMedicine(req,res){
+    var params = req.body;
+    client.query("INSERT INTO Inventario_Medicamento VALUES ($1,$2,$3,$4)",[params.id_centro_medico,parseInt(params.id_medicamento),parseInt(params.disponibilidad),params.fecha_caducidad])
+    .then(response => {
+        res.send({message:"Medicamento insertado con exito en el centro medico."});
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(500).send({message:'Error general'});
+    })
+}
+
 module.exports = {
-    create
+    create,
+    insertMedicine
 }
