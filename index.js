@@ -12,6 +12,9 @@ var specialtyRoutes = require('./routes/specialty.route');
 var medicineRoutes = require('./routes/medicine.route');
 var materialRoutes = require('./routes/material.route');
 var directionRoutes = require('./routes/direction.route');
+var conditionRoutes = require('./routes/condition.route');
+var practiceRoutes = require('./routes/practice.route');
+var recordRoutes = require('./routes/record.route');
 
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
@@ -33,5 +36,8 @@ app.use(specialtyRoutes);
 app.use(medicineRoutes);
 app.use(materialRoutes);
 app.use(directionRoutes);
+app.use(conditionRoutes);
+app.use(practiceRoutes);
+app.use(recordRoutes);
 
 module.exports = app;
