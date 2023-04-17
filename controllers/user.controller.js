@@ -65,10 +65,23 @@ function getSummaryFile(req,res){
     })
 }
 
+function getDiseaseIncidence(req,res){
+    var params = req.body;
+    client.query("SELECT * FROM enfermedades_incidencia($1)",[params.id_incidencia])
+    .then(response => {
+        res.send(response.rows);
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(500).send({message:'Error general'});
+    })
+}
+
 module.exports = {
     login,
     createPatient,
     createDoctor,
     createState,
-    getSummaryFile
+    getSummaryFile,
+    getDiseaseIncidence
 }
