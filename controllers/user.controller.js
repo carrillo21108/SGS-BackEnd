@@ -77,11 +77,24 @@ function getDiseaseIncidence(req,res){
     })
 }
 
+function getExamIncidence(req,res){
+    var params = req.body;
+    client.query("SELECT * FROM examenes_incidencia($1)",[params.id_incidencia])
+    .then(response => {
+        res.send(response.rows);
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(500).send({message:'Error general'});
+    })
+}
+
 module.exports = {
     login,
     createPatient,
     createDoctor,
     createState,
     getSummaryFile,
-    getDiseaseIncidence
+    getDiseaseIncidence,
+    getExamIncidence
 }

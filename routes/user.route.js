@@ -9,5 +9,6 @@ api.post('/createMedico',userController.createDoctor);
 api.post('/createEstado',userController.createState);
 api.get('/getResumenExpediente',userController.getSummaryFile);
 api.get('/getEnfermedadesIncidencia',userController.getDiseaseIncidence);
+api.get('/getExamenesIncidencia',userController.getExamIncidence);
 
 module.exports = api;
