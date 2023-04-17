@@ -53,9 +53,22 @@ function createState(req,res){
     })
 }
 
+function getSummaryFile(req,res){
+    var params = req.body;
+    client.query("SELECT * FROM resumen_expediente($1)",[params.no_paciente])
+    .then(response => {
+        res.send(response.rows);
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(500).send({message:'Error general'});
+    })
+}
+
 module.exports = {
     login,
     createPatient,
     createDoctor,
-    createState
+    createState,
+    getSummaryFile
 }
