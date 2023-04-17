@@ -133,6 +133,22 @@ function getSurgeryIncidence(req,res){
     })
 }
 
+function getPatient(req,res){
+    var params = req.body;
+    client.query("SELECT * FROM Paciente WHERE cui=$1",[params.cui])
+    .then(response => {
+        if(response.rows.length==0){
+            res.send({message:"No existe registro."});
+        }else{
+            res.send(response.rows);
+        }
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(500).send({message:'Error general'});
+    })
+}
+
 module.exports = {
     login,
     createPatient,
@@ -142,5 +158,6 @@ module.exports = {
     getDiseaseIncidence,
     getExamIncidence,
     getAddictionIncidence,
-    getSurgeryIncidence
+    getSurgeryIncidence,
+    getPatient
 }
