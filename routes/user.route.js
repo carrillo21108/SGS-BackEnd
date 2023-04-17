@@ -13,4 +13,6 @@ api.get('/getExamenesIncidencia',userController.getExamIncidence);
 api.get('/getAdiccionesIncidencia',userController.getAddictionIncidence);
 api.get('/getCirugiasIncidencia',userController.getSurgeryIncidence);
 
+api.get('/getPaciente',userController.getPatient);
+
 module.exports = api;
