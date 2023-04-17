@@ -57,7 +57,75 @@ function getSummaryFile(req,res){
     var params = req.body;
     client.query("SELECT * FROM resumen_expediente($1)",[params.no_paciente])
     .then(response => {
-        res.send(response.rows);
+        if(response.rows.length==0){
+            res.send({message:"No existen registros."});
+        }else{
+            res.send(response.rows);
+        }
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(500).send({message:'Error general'});
+    })
+}
+
+function getDiseaseIncidence(req,res){
+    var params = req.body;
+    client.query("SELECT * FROM enfermedades_incidencia($1)",[params.id_incidencia])
+    .then(response => {
+        if(response.rows.length==0){
+            res.send({message:"No existen registros."});
+        }else{
+            res.send(response.rows);
+        }
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(500).send({message:'Error general'});
+    })
+}
+
+function getExamIncidence(req,res){
+    var params = req.body;
+    client.query("SELECT * FROM examenes_incidencia($1)",[params.id_incidencia])
+    .then(response => {
+        if(response.rows.length==0){
+            res.send({message:"No existen registros."});
+        }else{
+            res.send(response.rows);
+        }
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(500).send({message:'Error general'});
+    })
+}
+
+function getAddictionIncidence(req,res){
+    var params = req.body;
+    client.query("SELECT * FROM adicciones_incidencia($1)",[params.id_incidencia])
+    .then(response => {
+        if(response.rows.length==0){
+            res.send({message:"No existen registros."});
+        }else{
+            res.send(response.rows);
+        }
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(500).send({message:'Error general'});
+    })
+}
+
+function getSurgeryIncidence(req,res){
+    var params = req.body;
+    client.query("SELECT * FROM cirugias_incidencia($1)",[params.id_incidencia])
+    .then(response => {
+        if(response.rows.length==0){
+            res.send({message:"No existen registros."});
+        }else{
+            res.send(response.rows);
+        }
     })
     .catch(err => {
         console.log(err);
@@ -70,5 +138,9 @@ module.exports = {
     createPatient,
     createDoctor,
     createState,
-    getSummaryFile
+    getSummaryFile,
+    getDiseaseIncidence,
+    getExamIncidence,
+    getAddictionIncidence,
+    getSurgeryIncidence
 }
