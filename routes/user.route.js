@@ -15,4 +15,6 @@ api.get('/getCirugiasIncidencia',userController.getSurgeryIncidence);
 
 api.get('/getPaciente',userController.getPatient);
 
+api.put('/transferPersona',userController.transferPerson);
+
 module.exports = api;
