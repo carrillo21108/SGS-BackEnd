@@ -149,6 +149,18 @@ function getPatient(req,res){
     })
 }
 
+function transferPerson(req,res){
+    var params = req.body;
+    client.query("UPDATE Persona SET id_centro_medico = $2 WHERE cui = $1",[params.cui,params.id_centro_medico])
+    .then(response => {
+        res.send({message:"Persona transferida con exito."});
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(500).send({message:'Error general'});
+    })
+}
+
 module.exports = {
     login,
     createPatient,
@@ -159,5 +171,6 @@ module.exports = {
     getExamIncidence,
     getAddictionIncidence,
     getSurgeryIncidence,
-    getPatient
+    getPatient,
+    transferPerson
 }
