@@ -5,6 +5,7 @@ var api = express.Router();
 
 api.post('/createDepartamento',direction.createDepartment);
 api.post('/createMunicipio',direction.createMunicipality);
-api.post('/createDireccion',direction.createDirection);
+api.post('/createDireccionCentroMedico',direction.createDirectionMedicalCenter);
+api.post('/createDireccionPersona',direction.createDirectionPerson);
 
 module.exports = api;

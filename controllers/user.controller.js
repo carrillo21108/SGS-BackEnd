@@ -9,6 +9,7 @@ function login(req,res){
             res.send({message:"Contraseña y/o usuario incorrecto."});
         }else{
             res.send(response.rows);
+            client.query("SET my.app_user = " +params.usuario)
         }
     })
     .catch(err => {
@@ -19,7 +20,7 @@ function login(req,res){
 
 function createPatient(req,res){
     var params = req.body;
-    client.query("CALL createPaciente($1,$2,$3,$4,$5,$6,$7)",[params.cui,params.nombre,params.apellidos,params.direccion,params.telefono,params.id_centro_medico,parseInt(params.id_estado)])
+    client.query("CALL createPaciente($1,$2,$3,$4,$5,$6)",[params.cui,params.nombre,params.apellidos,params.telefono,params.id_centro_medico,parseInt(params.id_estado)])
     .then(response => {
         res.send({message:"Paciente creado con exito."});
     })
@@ -31,7 +32,7 @@ function createPatient(req,res){
 
 function createDoctor(req,res){
     var params = req.body;
-    client.query("CALL createMedico($1,$2,$3,$4,$5,$6,$7,$8,$9,$10)",[params.cui,params.nombre,params.apellidos,params.direccion,params.telefono,params.id_centro_medico,params.no_colegiado,parseInt(params.id_especialidad),params.usuario,params.clave])
+    client.query("CALL createMedico($1,$2,$3,$4,$5,$6,$7,$8,$9)",[params.cui,params.nombre,params.apellidos,params.telefono,params.id_centro_medico,params.no_colegiado,parseInt(params.id_especialidad),params.usuario,params.clave])
     .then(response => {
         res.send({message:"Medico creado con exito."});
     })
@@ -177,6 +178,30 @@ function transferPerson(req,res){
     })
 }
 
+function updatePatient(req,res){
+    var params = req.body;
+    client.query("CALL updatePaciente($1,$2,$3,$4,$5,$6)",[params.cui,params.nombre,params.apellidos,params.telefono,params.id_centro_medico,parseInt(params.id_estado)])
+    .then(response => {
+        res.send({message:"Paciente actualizado con exito."});
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(500).send({message:'Error general'});
+    })
+}
+
+function updateDoctor(req,res){
+    var params = req.body;
+    client.query("CALL updateMedico($1,$2,$3,$4,$5,$6,$7,$8,$9)",[params.cui,params.nombre,params.apellidos,params.telefono,params.id_centro_medico,params.no_colegiado,parseInt(params.id_especialidad),params.usuario,params.clave])
+    .then(response => {
+        res.send({message:"Medico actualizado con exito."});
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(500).send({message:'Error general'});
+    })
+}
+
 module.exports = {
     login,
     createPatient,
@@ -189,5 +214,7 @@ module.exports = {
     getSurgeryIncidence,
     getPatient,
     transferPerson,
-    getTreatmentIncidence
+    getTreatmentIncidence,
+    updatePatient,
+    updateDoctor
 }
