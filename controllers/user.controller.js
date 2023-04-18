@@ -133,6 +133,22 @@ function getSurgeryIncidence(req,res){
     })
 }
 
+function getTreatmentIncidence(req,res){
+    var params = req.body;
+    client.query("SELECT * FROM tratamiento_incidencia($1)",[params.id_incidencia])
+    .then(response => {
+        if(response.rows.length==0){
+            res.send({message:"No existen registros."});
+        }else{
+            res.send(response.rows);
+        }
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(500).send({message:'Error general'});
+    })
+}
+
 function getPatient(req,res){
     var params = req.body;
     client.query("SELECT * FROM Paciente WHERE cui=$1",[params.cui])
@@ -172,5 +188,6 @@ module.exports = {
     getAddictionIncidence,
     getSurgeryIncidence,
     getPatient,
-    transferPerson
+    transferPerson,
+    getTreatmentIncidence
 }
