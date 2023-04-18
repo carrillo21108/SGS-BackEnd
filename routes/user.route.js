@@ -12,6 +12,7 @@ api.get('/getEnfermedadesIncidencia',userController.getDiseaseIncidence);
 api.get('/getExamenesIncidencia',userController.getExamIncidence);
 api.get('/getAdiccionesIncidencia',userController.getAddictionIncidence);
 api.get('/getCirugiasIncidencia',userController.getSurgeryIncidence);
+api.get('/getTratamientoIncidencia',userController.getTreatmentIncidence);
 
 api.get('/getPaciente',userController.getPatient);
 
