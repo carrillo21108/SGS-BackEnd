@@ -7,6 +7,7 @@ api.post('/login',userController.login);
 api.post('/createPaciente',userController.createPatient);
 api.post('/createMedico',userController.createDoctor);
 api.post('/createEstado',userController.createState);
+
 api.get('/getResumenExpediente',userController.getSummaryFile);
 api.get('/getEnfermedadesIncidencia',userController.getDiseaseIncidence);
 api.get('/getExamenesIncidencia',userController.getExamIncidence);
@@ -17,5 +18,7 @@ api.get('/getTratamientoIncidencia',userController.getTreatmentIncidence);
 api.get('/getPaciente',userController.getPatient);
 
 api.put('/transferPersona',userController.transferPerson);
+api.put('/updatePaciente',userController.updatePatient);
+api.put('/updateMedico',userController.updateDoctor);
 
 module.exports = api;
