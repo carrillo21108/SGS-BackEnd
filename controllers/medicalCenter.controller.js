@@ -2,7 +2,7 @@ var client = require('../connection');
 
 function create(req,res){
     var params = req.body;
-    client.query("INSERT INTO Centro_Medico VALUES ($1,$2)",[params.id_centro_medico,params.nombre])
+    client.query("CALL createCentroMedico($1,$2,$3,$4)",[params.id_centro_medico,params.nombre,params.direccion,params.id_municipio])
     .then(response => {
         res.send({message:"Centro Medico creado con exito."});
     })
@@ -36,8 +36,21 @@ function insertMaterial(req,res){
     })
 }
 
+function getMedicalCenters(req,res){
+    var params = req.body;
+    client.query("SELECT * FROM Centro_Medico")
+    .then(response => {
+        res.send(response.rows);
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(500).send({message:'Error general'});
+    })
+}
+
 module.exports = {
     create,
     insertMedicine,
-    insertMaterial
+    insertMaterial,
+    getMedicalCenters
 }
