@@ -166,6 +166,18 @@ function getPatient(req,res){
     })
 }
 
+function getStates(req,res){
+    var params = req.body;
+    client.query("SELECT * FROM Estado")
+    .then(response => {
+        res.send(response.rows);
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(500).send({message:'Error general'});
+    })
+}
+
 function transferPerson(req,res){
     var params = req.body;
     client.query("UPDATE Persona SET id_centro_medico = $2 WHERE cui = $1",[params.cui,params.id_centro_medico])
@@ -216,5 +228,6 @@ module.exports = {
     transferPerson,
     getTreatmentIncidence,
     updatePatient,
-    updateDoctor
+    updateDoctor,
+    getStates
 }
