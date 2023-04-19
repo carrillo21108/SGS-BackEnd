@@ -5,4 +5,6 @@ var api = express.Router();
 
 api.post('/createEspecialidad',specialty.create);
 
+api.get('/getEspecialidades',specialty.getSpecialties);
+
 module.exports = api;

@@ -48,10 +48,37 @@ function createDirectionPerson(req,res){
     })
 }
 
+function getDepartments(req,res){
+    var params = req.body;
+    client.query("SELECT * FROM Departamento")
+    .then(response => {
+        res.send(response.rows);
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(500).send({message:'Error general'});
+    })
+}
+
+function getMunicipalities(req,res){
+    var params = req.body;
+    client.query("SELECT * FROM Municipio WHERE id_departamento = $1",[params.id_departamento])
+    .then(response => {
+        res.send(response.rows);
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(500).send({message:'Error general'});
+    })
+}
+
+
 
 module.exports = {
     createDepartment,
     createMunicipality,
     createDirectionMedicalCenter,
-    createDirectionPerson
+    createDirectionPerson,
+    getDepartments,
+    getMunicipalities
 }
