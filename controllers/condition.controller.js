@@ -57,10 +57,58 @@ function getTop10Diseases(req,res){
     })
 }
 
+function getTop10Doctors(req,res){
+    client.query("SELECT * FROM top_10_medicos()")
+    .then(response => {
+        res.send(response.rows);
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(500).send({message:'Error general'});
+    })
+}
+
+function getTop5Patients(req,res){
+    client.query("SELECT * FROM top_5_pacientes($1)",[req.params.id_centro_medico])
+    .then(response => {
+        res.send(response.rows);
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(500).send({message:'Error general'});
+    })
+}
+
+function getMedicinesToRunOut(req,res){
+    client.query("SELECT * FROM medicinas_agotarse($1)",[req.params.id_centro_medico])
+    .then(response => {
+        res.send(response.rows);
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(500).send({message:'Error general'});
+    })
+}
+
+function getTop3Units(req,res){
+    client.query("SELECT * FROM top_3_unidades()")
+    .then(response => {
+        res.send(response.rows);
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(500).send({message:'Error general'});
+    })
+}
+
 module.exports = {
     createDisease,
     createAddiction,
     getDiseases,
     getAddictions,
-    getTop10Diseases
+    getTop10Diseases,
+    getTop10Doctors,
+    getTop5Patients,
+    getMedicinesToRunOut,
+    getTop3Units
 }
