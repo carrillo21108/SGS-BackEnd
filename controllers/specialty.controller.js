@@ -12,6 +12,20 @@ function create(req,res){
     })
 }
 
+function getSpecialties(req,res){
+    var params = req.body;
+    client.query("SELECT * FROM Especialidad")
+    .then(response => {
+        res.send(response.rows);
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(500).send({message:'Error general'});
+    })
+}
+
+
 module.exports = {
-    create
+    create,
+    getSpecialties
 }

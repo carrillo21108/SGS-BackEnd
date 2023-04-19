@@ -180,7 +180,7 @@ function transferPerson(req,res){
 
 function updatePatient(req,res){
     var params = req.body;
-    client.query("CALL updatePaciente($1,$2,$3,$4,$5,$6)",[params.cui,params.nombre,params.apellidos,params.telefono,params.id_centro_medico,parseInt(params.id_estado)])
+    client.query("CALL updatePaciente($1,$2,$3,$4)",[params.cui,params.nombre,params.apellidos,params.telefono])
     .then(response => {
         res.send({message:"Paciente actualizado con exito."});
     })

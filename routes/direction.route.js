@@ -8,4 +8,7 @@ api.post('/createMunicipio',direction.createMunicipality);
 api.post('/createDireccionCentroMedico',direction.createDirectionMedicalCenter);
 api.post('/createDireccionPersona',direction.createDirectionPerson);
 
+api.get('/getDepartamentos',direction.getDepartments);
+api.get('/getMunicipios',direction.getMunicipalities);
+
 module.exports = api;
