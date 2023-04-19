@@ -20,7 +20,7 @@ function login(req,res){
 
 function createPatient(req,res){
     var params = req.body;
-    client.query("CALL createPaciente($1,$2,$3,$4,$5,$6)",[params.cui,params.nombre,params.apellidos,params.telefono,params.id_centro_medico,parseInt(params.id_estado)])
+    client.query("CALL createPaciente($1,$2,$3,$4,$5,$6,$7,$8)",[params.cui,params.nombre,params.apellidos,params.telefono,params.id_centro_medico,parseInt(params.id_estado),params.direccion,parseInt(params.id_municipio)])
     .then(response => {
         res.send({message:"Paciente creado con exito."});
     })
