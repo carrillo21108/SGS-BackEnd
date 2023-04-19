@@ -24,7 +24,31 @@ function createAddiction(req,res){
     })
 }
 
+function getDiseases(req,res){
+    client.query("SELECT * FROM Enfermedad")
+    .then(response => {
+        res.send(response.rows);
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(500).send({message:'Error general'});
+    })
+}
+
+function getAddictions(req,res){
+    client.query("SELECT * FROM Adiccion")
+    .then(response => {
+        res.send(response.rows);
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(500).send({message:'Error general'});
+    })
+}
+
 module.exports = {
     createDisease,
-    createAddiction
+    createAddiction,
+    getDiseases,
+    getAddictions
 }
