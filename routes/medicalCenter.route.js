@@ -7,4 +7,6 @@ api.post('/createCentroMedico',medicalCenter.create);
 api.post('/insertMedicamento',medicalCenter.insertMedicine);
 api.post('/insertMaterial',medicalCenter.insertMaterial);
 
+api.get('/getCentrosMedicos',medicalCenter.getMedicalCenters);
+
 module.exports = api;
