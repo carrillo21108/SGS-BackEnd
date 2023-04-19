@@ -32,7 +32,7 @@ function createPatient(req,res){
 
 function createDoctor(req,res){
     var params = req.body;
-    client.query("CALL createMedico($1,$2,$3,$4,$5,$6,$7,$8,$9)",[params.cui,params.nombre,params.apellidos,params.telefono,params.id_centro_medico,params.no_colegiado,parseInt(params.id_especialidad),params.usuario,params.clave])
+    client.query("CALL createMedico($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11)",[params.cui,params.nombre,params.apellidos,params.telefono,params.id_centro_medico,params.no_colegiado,parseInt(params.id_especialidad),params.usuario,params.clave,params.direccion,parseInt(params.id_municipio)])
     .then(response => {
         res.send({message:"Medico creado con exito."});
     })
