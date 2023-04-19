@@ -16,6 +16,7 @@ api.get('/getCirugiasIncidencia',userController.getSurgeryIncidence);
 api.get('/getTratamientoIncidencia',userController.getTreatmentIncidence);
 
 api.get('/getPaciente',userController.getPatient);
+api.get('/getEstados',userController.getStates);
 
 api.put('/transferPersona',userController.transferPerson);
 api.put('/updatePaciente',userController.updatePatient);
