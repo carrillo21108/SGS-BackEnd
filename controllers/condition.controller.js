@@ -46,9 +46,21 @@ function getAddictions(req,res){
     })
 }
 
+function getTop10Diseases(req,res){
+    client.query("SELECT * FROM top_10_enfermedades()")
+    .then(response => {
+        res.send(response.rows);
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(500).send({message:'Error general'});
+    })
+}
+
 module.exports = {
     createDisease,
     createAddiction,
     getDiseases,
-    getAddictions
+    getAddictions,
+    getTop10Diseases
 }
