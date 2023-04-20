@@ -166,6 +166,22 @@ function getPatient(req,res){
     })
 }
 
+function getDoctor(req,res){
+    var params = req.body;
+    client.query("SELECT * FROM getMedico($1)",[params.cui])
+    .then(response => {
+        if(response.rows.length==0){
+            res.send({message:"No existe registro."});
+        }else{
+            res.send(response.rows);
+        }
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(500).send({message:'Error general'});
+    })
+}
+
 function getStates(req,res){
     var params = req.body;
     client.query("SELECT * FROM Estado")
@@ -204,7 +220,7 @@ function updatePatient(req,res){
 
 function updateDoctor(req,res){
     var params = req.body;
-    client.query("CALL updateMedico($1,$2,$3,$4,$5,$6,$7,$8,$9)",[params.cui,params.nombre,params.apellidos,params.telefono,params.id_centro_medico,params.no_colegiado,parseInt(params.id_especialidad),params.usuario,params.clave])
+    client.query("CALL updateMedico($1,$2,$3,$4,$5,$6)",[params.cui,params.nombre,params.apellidos,params.telefono,params.id_centro_medico,parseInt(params.id_especialidad)])
     .then(response => {
         res.send({message:"Medico actualizado con exito."});
     })
@@ -242,5 +258,6 @@ module.exports = {
     updatePatient,
     updateDoctor,
     getStates,
+    getDoctor,
     getPossibleParents
 }
