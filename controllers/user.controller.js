@@ -152,7 +152,7 @@ function getTreatmentIncidence(req,res){
 
 function getPatient(req,res){
     var params = req.body;
-    client.query("SELECT * FROM Paciente WHERE cui=$1",[params.cui])
+    client.query("SELECT * FROM getPatient($1)",[params.cui])
     .then(response => {
         if(response.rows.length==0){
             res.send({message:"No existe registro."});
@@ -192,7 +192,7 @@ function transferPerson(req,res){
 
 function updatePatient(req,res){
     var params = req.body;
-    client.query("CALL updatePaciente($1,$2,$3,$4)",[params.cui,params.nombre,params.apellidos,params.telefono])
+    client.query("CALL updatePaciente($1,$2,$3,$4,$5,$6)",[params.cui,params.nombre,params.apellidos,params.telefono,params.id_centro_medico,parseInt(params.id_estado)])
     .then(response => {
         res.send({message:"Paciente actualizado con exito."});
     })
