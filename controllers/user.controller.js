@@ -230,6 +230,18 @@ function updateDoctor(req,res){
     })
 }
 
+function getPossibleParents(req,res){
+    var params = req.body;
+    client.query("SELECT * FROM getPosiblesPadres($1)",[params.cui])
+    .then(response => {
+        res.send(response.rows);
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(500).send({message:'Error general'});
+    })
+}
+
 module.exports = {
     login,
     createPatient,
@@ -246,5 +258,6 @@ module.exports = {
     updatePatient,
     updateDoctor,
     getStates,
-    getDoctor
+    getDoctor,
+    getPossibleParents
 }
