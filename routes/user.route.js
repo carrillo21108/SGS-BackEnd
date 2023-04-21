@@ -14,6 +14,8 @@ api.post('/getExamenesIncidencia',userController.getExamIncidence);
 api.post('/getAdiccionesIncidencia',userController.getAddictionIncidence);
 api.post('/getCirugiasIncidencia',userController.getSurgeryIncidence);
 api.post('/getTratamientoIncidencia',userController.getTreatmentIncidence);
+api.get('/getBitacoraHistorial',userController.getHistoryLog);
+api.get('/getBitacoraTraspaso',userController.getTransferLog);
 
 api.post('/getPaciente',userController.getPatient);
 api.post('/getMedico',userController.getDoctor);
