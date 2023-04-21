@@ -79,17 +79,6 @@ function getTop5Patients(req,res){
     })
 }
 
-function getMedicinesToRunOut(req,res){
-    client.query("SELECT * FROM medicinas_agotarse($1)",[req.params.id_centro_medico])
-    .then(response => {
-        res.send(response.rows);
-    })
-    .catch(err => {
-        console.log(err);
-        res.status(500).send({message:'Error general'});
-    })
-}
-
 function getTop3Units(req,res){
     client.query("SELECT * FROM top_3_unidades()")
     .then(response => {
@@ -109,6 +98,5 @@ module.exports = {
     getTop10Diseases,
     getTop10Doctors,
     getTop5Patients,
-    getMedicinesToRunOut,
     getTop3Units
 }

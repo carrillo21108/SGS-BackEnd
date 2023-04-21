@@ -5,4 +5,6 @@ var api = express.Router();
 
 api.post('/createMaterial',material.create);
 
+api.get('/getMateriales',material.getMaterials);
+
 module.exports = api;

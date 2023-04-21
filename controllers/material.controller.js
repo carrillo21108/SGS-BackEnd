@@ -12,6 +12,18 @@ function create(req,res){
     })
 }
 
+function getMaterials(req,res){
+    client.query("SELECT * FROM nombre_materiales()")
+    .then(response => {
+        res.send(response.rows);
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(500).send({message:'Error general'});
+    })
+}
+
 module.exports = {
-    create
+    create,
+    getMaterials
 }
