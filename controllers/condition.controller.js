@@ -69,7 +69,8 @@ function getTop10Doctors(req,res){
 }
 
 function getTop5Patients(req,res){
-    client.query("SELECT * FROM top_5_pacientes($1)",[req.params.id_centro_medico])
+    var params = req.body;
+    client.query("SELECT * FROM top_5_pacientes($1)",[params.id_centro_medico])
     .then(response => {
         res.send(response.rows);
     })
