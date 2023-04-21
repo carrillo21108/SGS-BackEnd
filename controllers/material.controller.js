@@ -23,7 +23,20 @@ function getMaterials(req,res){
     })
 }
 
+function getInventoryMaterials(req,res){
+    var params = req.body;
+    client.query("SELECT * FROM inventario_materiales($1)",[params.id_centro_medico])
+    .then(response => {
+        res.send(response.rows);
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(500).send({message:'Error general'});
+    })
+}
+
 module.exports = {
     create,
-    getMaterials
+    getMaterials,
+    getInventoryMaterials
 }
