@@ -254,6 +254,28 @@ function getDoctors(req,res){
     })
 }
 
+function getHistoryLog(req,res){
+    client.query("SELECT * FROM bitacora_historial()")
+    .then(response => {
+        res.send(response.rows);
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(500).send({message:'Error general'});
+    })
+}
+
+function getTransferLog(req,res){
+    client.query("SELECT * FROM bitacora_traspaso()")
+    .then(response => {
+        res.send(response.rows);
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(500).send({message:'Error general'});
+    })
+}
+
 module.exports = {
     login,
     createPatient,
@@ -272,5 +294,7 @@ module.exports = {
     getStates,
     getDoctor,
     getPossibleParents,
-    getDoctors
+    getDoctors,
+    getHistoryLog,
+    getTransferLog
 }
