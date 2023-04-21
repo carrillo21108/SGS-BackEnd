@@ -14,7 +14,7 @@ function create(req,res){
 
 function insertMedicine(req,res){
     var params = req.body;
-    client.query("INSERT INTO Inventario_Medicamento VALUES ($1,$2,$3,$4)",[params.id_centro_medico,parseInt(params.id_medicamento),parseInt(params.disponibilidad),params.fecha_caducidad])
+    client.query("INSERT INTO Inventario_Medicamento VALUES ($1,$2,$3,$4,$5)",[params.id_centro_medico,parseInt(params.id_medicamento),parseInt(params.disponibilidad),params.fecha_caducidad,parseInt(params.capacidad_maxima)])
     .then(response => {
         res.send({message:"Medicamento insertado con exito en el centro medico."});
     })
