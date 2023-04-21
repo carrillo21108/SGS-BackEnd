@@ -24,7 +24,31 @@ function createSurgery(req,res){
     })
 }
 
+function getExams(req,res){
+    client.query("SELECT * FROM Examen")
+    .then(response => {
+        res.send(response.rows);
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(500).send({message:'Error general'});
+    })
+}
+
+function getSurgeries(req,res){
+    client.query("SELECT * FROM Cirugia")
+    .then(response => {
+        res.send(response.rows);
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(500).send({message:'Error general'});
+    })
+}
+
 module.exports = {
     createExam,
-    createSurgery
+    createSurgery,
+    getExams,
+    getSurgeries
 }

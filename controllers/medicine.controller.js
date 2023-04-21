@@ -23,9 +23,21 @@ function getMedicines(req,res){
     })
 }
 
-function getInventory(req,res){
+function getInventoryMedicine(req,res){
     var params = req.body;
-    client.query("SELECT * FROM inventario_medicamentos($1)",[params.id_medicamento])
+    client.query("SELECT * FROM inventario_medicamentos($1)",[params.id_centro_medico])
+    .then(response => {
+        res.send(response.rows);
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(500).send({message:'Error general'});
+    })
+}
+
+function getMedicinesToRunOut(req,res){
+    var params = req.body;
+    client.query("SELECT * FROM medicinas_agotarse($1)",[params.id_centro_medico])
     .then(response => {
         res.send(response.rows);
     })
@@ -38,5 +50,6 @@ function getInventory(req,res){
 module.exports = {
     create,
     getMedicines,
-    getInventory
+    getInventoryMedicine,
+    getMedicinesToRunOut
 }
