@@ -25,7 +25,7 @@ function getMedicines(req,res){
 
 function getInventory(req,res){
     var params = req.body;
-    client.query("SELECT * FROM inventario_medicamento($1)",[params.id_medicamento])
+    client.query("SELECT * FROM inventario_medicamentos($1)",[params.id_medicamento])
     .then(response => {
         res.send(response.rows);
     })
